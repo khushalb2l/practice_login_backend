@@ -14,7 +14,7 @@ dotenv.config();
 // Define allowed origins for CORS
 const allowedOrigins = [
   'https://practice-login-frontend.onrender.com/', 
-  'http://localhost:5762' // Include localhost for development
+  'http://localhost:5173/' // Include localhost for development
 ];
 
 const corsOptions = {
