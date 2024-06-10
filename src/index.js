@@ -8,7 +8,28 @@ const app = express();
 
 dotenv.config();
 //midleware
-app.use(cors()); // it helps to make request from the cross origin platform
+// app.use(cors()); // it helps to make request from the cross origin platform
+
+
+// Define allowed origins for CORS
+const allowedOrigins = [
+  'https://practice-login-frontend.onrender.com/', 
+  'http://localhost:5762' // Include localhost for development
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions)); // Apply CORS with options
+
 
 app.use(express.json()); // it use to parse the JSON data in the req. body
 //when content type application/json request made from the frontend
